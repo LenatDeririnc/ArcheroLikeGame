@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Components.Characters.Triggers;
+using Components.Weapons.Bullets;
 using Tools.Timer;
 using UnityEngine;
 
@@ -11,7 +11,6 @@ namespace Components.Characters
     {
         private GarbageCollector m_garbageCollector;
         private CharacterProperties m_properties;
-        private ShootingRange m_range;
 
         private Timer m_shootTimer;
 
@@ -26,27 +25,44 @@ namespace Components.Characters
         private void Awake()
         {
             m_shootTimer = new Timer(this);
-            m_range = GetComponentInChildren<ShootingRange>();
             m_properties = GetComponent<CharacterProperties>();
             InitGarbageCollector();
+            m_properties.onGetDamage += SetShootingPoint;
         }
 
-        private void Start()
+        public void SetShootingPoint(Collider collider)
         {
-            m_range.StartShootingAction += SetShootingPoint;
-            m_range.StopShootingAction += UnsetShootingPoint;
-        }
-
-        private void SetShootingPoint(Collider collider)
-        {
+            var transform = collider.transform;
+            
+            if (m_properties.Transform == transform)
+                return;
+            
+            var targetProperties = collider.GetComponent<CharacterProperties>();
+            if (targetProperties.Health <= 0)
+                return;
+            
+            if (m_shootingPoints.Contains(transform))
+                return;
+            
             m_shootingPoints.Add(collider.transform);
-            if (!m_shootTimer.IsActive)
-                m_shootTimer.Start(ShootDelay());
+            targetProperties.OnCharacterDie += UnsetShootingPoint;
+            
+            if (m_shootTimer.IsActive)
+                return;
+            
+            m_shootTimer.Start(ShootDelay());
         }
 
-        private void UnsetShootingPoint(Collider collider)
+        public void UnsetShootingPoint(Collider collider)
         {
-            m_shootingPoints.Remove(collider.transform);
+            var transform = collider.transform;
+
+            if (!m_shootingPoints.Contains(transform))
+                return;
+            
+            m_shootingPoints.Remove(transform);
+            var targetProperties = collider.GetComponent<CharacterProperties>();
+            targetProperties.OnCharacterDie -= UnsetShootingPoint;
         }
 
         private Transform FindNearEnemy()
@@ -86,6 +102,8 @@ namespace Components.Characters
                 
                 var weapon = m_properties.CurrentWeapon;
                 var bullet = Instantiate(weapon.Bullet, m_garbageCollector.Transform).transform;
+                var bulletProperties = bullet.GetComponent<Bullet>();
+                bulletProperties.senderCharacter = m_properties;
                 bullet.position = playerPosition;
                 bullet.rotation = dirRotation;
 

@@ -1,4 +1,5 @@
-﻿using ScriptableObjects.Weapons;
+﻿using Components.Characters;
+using ScriptableObjects.Weapons;
 using UnityEngine;
 
 namespace Components.Weapons.Bullets
@@ -10,9 +11,15 @@ namespace Components.Weapons.Bullets
 
         private Transform m_transform;
 
+        public CharacterProperties senderCharacter;
+
         public void SendDamage(Collider other)
         {
+            var properties = other.GetComponent<CharacterProperties>();
+            if (properties == null)
+                return;
             
+            properties.GetDamage(senderCharacter, m_weaponProperties.Damage);
         }
 
         private void Awake()

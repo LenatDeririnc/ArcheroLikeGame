@@ -253,7 +253,7 @@ MonoBehaviour:
   m_hideRenderMash: 1
   m_objectMask:
     serializedVersion: 2
-    m_Bits: 385
+    m_Bits: 449
   OnEnter:
     m_PersistentCalls:
       m_Calls:

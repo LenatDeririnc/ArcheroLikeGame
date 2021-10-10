@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace ScriptableObjects.Characters.Enemy
 {
-    public abstract class State : ScriptableObject
+    public abstract class MovementState : ScriptableObject
     {
-        public EnemyStateMachine EnemyStateMachine;
+        [HideInInspector] public EnemyMovementStateMachine enemyMovementStateMachine;
         public abstract void Init();
         public abstract void Update();
     }
