@@ -274,6 +274,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &381695672 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2738294832060236037, guid: 33e606e265c95f448a90f023332a5c55, type: 3}
+  m_PrefabInstance: {fileID: 2738294832996608201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &381695673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381695672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea9fa5c409f4191bcc9588b592bbf82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: {fileID: 11400000, guid: 34a8acbaa26721c4591a498bc35224ca, type: 2}
+  walkPoint: {fileID: 1212838678}
 --- !u!1 &468385630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,7 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f76566f0fd84696b2db183e7d112b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_shootingPoint: {fileID: 0}
+  m_shootingPoints: []
 --- !u!114 &1212838683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2087,6 +2106,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409680182}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1418990196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4438312558603138012, guid: 4d161e7be91574f43b5dbaf3f867230e, type: 3}
+  m_PrefabInstance: {fileID: 4438312558299520467}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1418990197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418990196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea9fa5c409f4191bcc9588b592bbf82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: {fileID: 11400000, guid: 34a8acbaa26721c4591a498bc35224ca, type: 2}
+  walkPoint: {fileID: 1212838678}
 --- !u!1 &1675348360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2543,15 +2581,8 @@ PrefabInstance:
       propertyPath: m_followPoint
       value: 
       objectReference: {fileID: 1212838678}
-    - target: {fileID: 4881143813902566715, guid: 33e606e265c95f448a90f023332a5c55, type: 3}
-      propertyPath: m_AgentTypeID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4881143813902566715, guid: 33e606e265c95f448a90f023332a5c55, type: 3}
-      propertyPath: m_WalkableMask
-      value: 15
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2738294832060236059, guid: 33e606e265c95f448a90f023332a5c55, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 33e606e265c95f448a90f023332a5c55, type: 3}
 --- !u!1001 &4438312558299520467
 PrefabInstance:
@@ -2612,5 +2643,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundEnemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4438312558603137989, guid: 4d161e7be91574f43b5dbaf3f867230e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4d161e7be91574f43b5dbaf3f867230e, type: 3}
