@@ -13,6 +13,8 @@ namespace ScriptableObjects.Characters.States
     [CreateAssetMenu(fileName = "AttackState", menuName = "CharacterStates/AttackState", order = 1)]
     public class AttackState : State
     {
+        public override string StateName() => "AttackState";
+        
         private GarbageCollector m_garbageCollector;
         private CharacterProperties m_properties;
 

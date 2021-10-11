@@ -7,6 +7,8 @@ namespace ScriptableObjects.Characters.States
     [CreateAssetMenu(fileName = "InputMoveState", menuName = "CharacterStates/InputMoveState", order = 1)]
     public class InputMoveState : State
     {
+        public override string StateName() => "InputMoveState";
+        
         private CharacterProperties m_properties;
         private CharacterController m_controller;
 

@@ -9,6 +9,8 @@ namespace ScriptableObjects.Characters.States
     [CreateAssetMenu(fileName = "FollowTargetState", menuName = "CharacterStates/FollowTargetState", order = 1)]
     public class FollowTargetState : State
     {
+        public override string StateName() => "FollowTargetState";
+        
         private CharacterProperties m_properties;
         private NavMeshAgent m_agent;
         private Transform m_transform;

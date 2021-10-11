@@ -8,7 +8,10 @@ namespace Components.Characters
 
         private void Awake()
         {
-            m_properties = GetComponent<CharacterProperties>();
+            CharacterProperties.ONCharacterPropertiesInit += () =>
+            {
+                m_properties = GetComponent<CharacterProperties>();
+            };
         }
 
         private void Update()

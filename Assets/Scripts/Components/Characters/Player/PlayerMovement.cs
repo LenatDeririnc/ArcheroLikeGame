@@ -11,39 +11,27 @@ namespace Components.Characters.Player
         private CharacterProperties m_properties;
         private CharacterBehaviour m_behaviour;
 
-        private State m_inputState;
-        private State m_attackState;
-
-        private bool m_isStaying = false;
-
         [SerializeField] private string m_verticalAxis = "Vertical";
         [SerializeField] private string m_horizontalAxis = "Horizontal";
 
         private void Awake()
         {
-            m_properties = GetComponent<CharacterProperties>();
-            m_behaviour = GetComponent<CharacterBehaviour>();
-            m_inputState = ScriptableObject.CreateInstance<InputMoveState>();
-            m_attackState = ScriptableObject.CreateInstance<AttackState>();
+            CharacterProperties.ONCharacterPropertiesInit += () =>
+            {
+                m_properties = GetComponent<CharacterProperties>();
+                m_behaviour = m_properties.CharacterBehaviour;
+            };
         }
 
         private void SetState(bool isStaying)
         {
-            switch (isStaying)
+            if (isStaying)
             {
-                case true when !m_isStaying:
-                {
-                    m_behaviour.SetState(m_attackState);
-                    break;
-                }
-                case false when m_isStaying:
-                {
-                    m_behaviour.SetState(m_inputState);
-                    break;
-                }
+                m_behaviour.SetState(CharacterBehaviour.attackState);
+                return;
             }
-
-            m_isStaying = isStaying;
+            
+            m_behaviour.SetState(CharacterBehaviour.inputState);
         }
 
         private void Update()

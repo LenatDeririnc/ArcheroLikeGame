@@ -14,8 +14,22 @@ namespace Components.Characters
 
         private void Awake()
         {
-            m_properties = GetComponent<CharacterProperties>();
-            ONCharacterDie += OnCharDie;
+            CharacterProperties.ONCharacterPropertiesInit += () =>
+            {
+                m_properties = GetComponent<CharacterProperties>();
+                ONCharacterDie += OnCharDie;
+                ONGetDamage += OnCharDamaged;
+            };
+        }
+
+        private void OnCharDamaged(Transform transform)
+        {
+            if (m_properties.isPlayer)
+                return;
+            
+            var CharBehaviour = m_properties.CharacterBehaviour;
+            CharBehaviour.AddInterestPoint(transform);
+            CharBehaviour.SetState(CharacterBehaviour.attackState);
         }
 
         private void OnCharDie(Transform transform)

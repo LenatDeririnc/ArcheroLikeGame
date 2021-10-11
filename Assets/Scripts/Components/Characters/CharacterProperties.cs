@@ -1,11 +1,17 @@
-﻿using ScriptableObjects.Weapons;
+﻿using ScriptableObjects.Characters;
+using ScriptableObjects.Weapons;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 namespace Components.Characters
 {
     public class CharacterProperties : MonoBehaviour
     {
+        public static UnityAction ONCharacterPropertiesInit;
+        
+        public bool isPlayer = false;
+        
         public float movementSpeed;
 
         public float health;
@@ -35,6 +41,7 @@ namespace Components.Characters
             m_navMeshAgent = GetComponent<NavMeshAgent>();
             m_characterController = GetComponent<CharacterController>();
             m_characterBehaviour = GetComponent<CharacterBehaviour>();
+            ONCharacterPropertiesInit?.Invoke();
         }
     }
 }
