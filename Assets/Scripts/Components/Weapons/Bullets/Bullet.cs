@@ -9,22 +9,15 @@ namespace Components.Weapons.Bullets
         [SerializeField] private Weapon m_weaponProperties;
         [SerializeField] private BulletMovement m_movement;
 
-        private Transform m_transform;
-
         public CharacterProperties senderCharacter;
 
         public void SendDamage(Collider other)
         {
-            var properties = other.GetComponent<CharacterProperties>();
-            if (properties == null)
+            var charActions = other.GetComponent<CharacterActions>();
+            if (charActions == null)
                 return;
             
-            properties.GetDamage(senderCharacter, m_weaponProperties.Damage);
-        }
-
-        private void Awake()
-        {
-            m_transform = transform;
+            charActions.GetDamage(senderCharacter, m_weaponProperties.Damage);
         }
 
         private void Update()

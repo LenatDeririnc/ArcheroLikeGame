@@ -1,49 +1,40 @@
-﻿using System;
-using Components.Weapons;
-using ScriptableObjects.Weapons;
+﻿using ScriptableObjects.Weapons;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.AI;
 
 namespace Components.Characters
 {
     public class CharacterProperties : MonoBehaviour
     {
-        public UnityAction<Collider> OnCharacterDie;
-        
-        [SerializeField] private float m_health;
-        public float Health => m_health;
+        public float movementSpeed;
 
-        public Weapon CurrentWeapon;
+        public float health;
+
+        public Weapon currentWeapon;
 
         private Transform m_transform;
         
         public Transform Transform => m_transform;
 
-        public UnityAction<Collider> onGetDamage;
+        private Collider m_collider;
+        public Collider Collider => m_collider;
 
-        public Collider Collider;
+        private NavMeshAgent m_navMeshAgent;
+        public NavMeshAgent NavMeshAgent => m_navMeshAgent;
 
+        private CharacterController m_characterController; 
+        public CharacterController CharacterController => m_characterController;
+
+        private CharacterBehaviour m_characterBehaviour;
+        public CharacterBehaviour CharacterBehaviour => m_characterBehaviour;
+        
         private void Awake()
         {
             m_transform = transform;
-            Collider = GetComponent<Collider>();
-        }
-
-        public void GetDamage(CharacterProperties sender, float damage)
-        {
-            m_health -= damage;
-
-            if (m_health <= 0)
-            {
-                OnCharacterDie?.Invoke(Collider);
-                gameObject.SetActive(false);
-                return;
-            }
-
-            if (sender == null)
-                return;
-            
-            onGetDamage?.Invoke(sender.Collider);
+            m_collider = GetComponent<Collider>();
+            m_navMeshAgent = GetComponent<NavMeshAgent>();
+            m_characterController = GetComponent<CharacterController>();
+            m_characterBehaviour = GetComponent<CharacterBehaviour>();
         }
     }
 }

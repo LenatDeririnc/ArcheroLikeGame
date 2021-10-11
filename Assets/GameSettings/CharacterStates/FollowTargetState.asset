@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d61395b855944760b26963cf8dd2f4fe, type: 3}
-  m_Name: FollowState
+  m_Name: FollowTargetState
   m_EditorClassIdentifier: 
-  EnemyStateMachine: {fileID: 0}
+  characterBehaviour: {fileID: 0}

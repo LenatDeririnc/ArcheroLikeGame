@@ -4,19 +4,19 @@ namespace Components.Characters
 {
     public class CharacterGravity : MonoBehaviour
     {
-        private CharacterController m_controller;
+        private CharacterProperties m_properties;
 
         private void Awake()
         {
-            m_controller = GetComponent<CharacterController>();
+            m_properties = GetComponent<CharacterProperties>();
         }
 
         private void Update()
         {
-            if (m_controller.isGrounded)
+            if (m_properties.CharacterController.isGrounded)
                 return;
 
-            m_controller.Move(Physics.gravity * Time.deltaTime);
+            m_properties.CharacterController.Move(Physics.gravity * Time.deltaTime);
         }
     }
 }

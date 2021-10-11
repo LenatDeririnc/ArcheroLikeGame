@@ -4,16 +4,8 @@ using UnityEngine.Events;
 
 namespace Components.Triggers
 {
-    public class Trigger : MonoBehaviour
+    public class TriggerCollider : AbstractTrigger
     {
-        [SerializeField] private bool m_hideRenderMash = true;
-        [SerializeField] private LayerMask m_objectMask = 0;
-
-        private void Awake()
-        {
-            HideRenderMesh();
-        }
-
         public UnityEvent<Collider> OnEnter;
         public UnityEvent<Collider> OnStay;
         public UnityEvent<Collider> OnExit;
@@ -24,31 +16,22 @@ namespace Components.Triggers
                 return;
             
             if (m_objectMask.IsInLayerMask(other.gameObject.layer))
-                @event.Invoke(other);
+                @event?.Invoke(other);
         }
-        
-        private void OnTriggerEnter(Collider other)
+
+        protected override void OnTriggerEnter(Collider other)
         {
             TriggerAction(other, OnEnter);
         }
 
-        private void OnTriggerExit(Collider other)
+        protected override void OnTriggerExit(Collider other)
         {
             TriggerAction(other, OnExit);
         }
 
-        private void OnTriggerStay(Collider other)
+        protected override void OnTriggerStay(Collider other)
         {
             TriggerAction(other, OnStay);
-        }
-
-        private void HideRenderMesh()
-        {
-            if (!m_hideRenderMash)
-                return;
-            
-            var mesh = GetComponent<MeshRenderer>();
-            mesh.enabled = false;
         }
     }
 }
