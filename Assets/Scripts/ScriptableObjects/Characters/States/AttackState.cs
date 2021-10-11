@@ -7,6 +7,7 @@ using Helpers;
 using ScriptableObjects.Weapons;
 using Tools.Timer;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace ScriptableObjects.Characters.States
 {
@@ -17,6 +18,7 @@ namespace ScriptableObjects.Characters.States
         
         private GarbageCollector m_garbageCollector;
         private CharacterProperties m_properties;
+        private NavMeshAgent m_agent;
 
         private Timer m_shootDelay;
         
@@ -31,6 +33,7 @@ namespace ScriptableObjects.Characters.States
             base.Init(context);
             m_shootDelay = new Timer(context);
             m_properties = context.characterProperties;
+            m_agent = m_properties.NavMeshAgent;
             InitGarbageCollector();
         }
         
@@ -76,6 +79,9 @@ namespace ScriptableObjects.Characters.States
             }
 
             CreateBullet(weapon);
+            
+            if (m_agent != null)
+                m_agent.stoppingDistance = 1000;
         }
     }
 }

@@ -275,6 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdce242afdeb4f9a8617823f729edeaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   movementSpeed: 5
   health: 100
   currentWeapon: {fileID: 11400000, guid: 69b04d81b22720b4a85e2094947f2822, type: 2}

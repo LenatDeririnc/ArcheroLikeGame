@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1860332300899372466}
   - component: {fileID: 1860332300899372464}
   - component: {fileID: 1860332300899372467}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 1860332301417808910}
   - component: {fileID: 1860332301417808908}
   - component: {fileID: 1860332301417808911}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bullet 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_weaponProperties: {fileID: 11400000, guid: 69b04d81b22720b4a85e2094947f2822, type: 2}
   m_movement: {fileID: 1860332301417808911}
+  senderCharacter: {fileID: 0}
 --- !u!114 &1860332301417808911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +156,7 @@ GameObject:
   - component: {fileID: 1860332301790712132}
   - component: {fileID: 1860332301790712135}
   - component: {fileID: 1860332301790712134}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +299,7 @@ GameObject:
   - component: {fileID: 1860332301874710525}
   - component: {fileID: 1860332301874710523}
   - component: {fileID: 1860332301874710522}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1860332302166844046}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1860332302880416120}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -32,7 +32,7 @@ namespace ScriptableObjects.Characters.States
                 throw new Exception("NavMeshAgent not found");
 
             var pointsOfInterests = characterBehaviour.pointsOfInterests;
-            var characterTransform = characterBehaviour.transform;
+            var characterTransform = m_properties.Transform;
 
             var followPoint = TransformHelper.FindNear(characterTransform, pointsOfInterests);
             
@@ -43,6 +43,7 @@ namespace ScriptableObjects.Characters.States
             Vector3 newPosition = new Vector3(followPointPosition.x, m_transform.position.y, followPointPosition.z);
 
             m_agent.SetDestination(newPosition);
+            m_agent.stoppingDistance = 0;
         }
     }
 }

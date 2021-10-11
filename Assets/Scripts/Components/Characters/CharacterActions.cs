@@ -1,4 +1,5 @@
 ﻿using System;
+using Components.Characters.Enemy;
 using ScriptableObjects.Characters;
 using UnityEngine;
 using UnityEngine.Events;
@@ -26,10 +27,14 @@ namespace Components.Characters
         {
             if (m_properties.isPlayer)
                 return;
+
+            EnemyActions enemyActions = GetComponent<EnemyActions>();
+            if (enemyActions == null)
+                return;
             
             var CharBehaviour = m_properties.CharacterBehaviour;
             CharBehaviour.AddInterestPoint(transform);
-            CharBehaviour.SetState(CharacterBehaviour.attackState);
+            enemyActions.SetAttackMode(true);
         }
 
         private void OnCharDie(Transform transform)
