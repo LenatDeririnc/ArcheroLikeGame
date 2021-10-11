@@ -8,6 +8,8 @@ namespace Components.Characters.Player
     public class PlayerMovement : MonoBehaviour
     {
         public static Vector3 input = new Vector3(0, 0, 0);
+
+        public bool isKeyboard = true;
         
         private CharacterProperties m_properties;
         private CharacterBehaviour m_behaviour;
@@ -27,7 +29,7 @@ namespace Components.Characters.Player
             m_behaviour = m_properties.CharacterBehaviour;
         }
 
-        private void SetState(bool isStaying)
+        public void SetState(bool isStaying)
         {
             if (isStaying)
             {
@@ -40,11 +42,14 @@ namespace Components.Characters.Player
 
         private void Update()
         {
+            if (!isKeyboard)
+                return;
+            
             float horizontal = Input.GetAxis(m_horizontalAxis);
             float vertical = Input.GetAxis(m_verticalAxis);
 
             input = Vector3.ClampMagnitude(new Vector3(horizontal, 0, vertical), 1);
-
+            
             SetState(horizontal == 0 && vertical == 0);
         }
     }
