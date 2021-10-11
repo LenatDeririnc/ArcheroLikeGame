@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ca5e383e524363bf97141a71638feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_droppingMoney: {fileID: 3946322240954481918, guid: fe9cbfc7b032b8545b22a7fdfe7e3be0, type: 3}
+  m_droppingMoney: {fileID: 5925934656342594996, guid: eab1d09ad5489f4408798cffe4ea7261, type: 3}
 --- !u!114 &957229257763398932
 MonoBehaviour:
   m_ObjectHideFlags: 0
