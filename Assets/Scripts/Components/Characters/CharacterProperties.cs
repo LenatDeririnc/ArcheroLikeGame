@@ -33,6 +33,8 @@ namespace Components.Characters
 
         private CharacterBehaviour m_characterBehaviour;
         public CharacterBehaviour CharacterBehaviour => m_characterBehaviour;
+
+        public int moneyCost = 0;
         
         private void Awake()
         {

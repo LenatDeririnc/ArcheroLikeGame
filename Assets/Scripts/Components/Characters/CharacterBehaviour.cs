@@ -21,10 +21,8 @@ namespace Components.Characters
 
         private void Awake()
         {
-            CharacterProperties.ONCharacterPropertiesInit += () =>
-            {
-                characterProperties = GetComponent<CharacterProperties>();
-            };
+            characterProperties = GetComponent<CharacterProperties>();
+            CharacterProperties.ONCharacterPropertiesInit += () => characterProperties = GetComponent<CharacterProperties>();
 
             inputState ??= ScriptableObject.CreateInstance<InputMoveState>();
             attackState ??= ScriptableObject.CreateInstance<AttackState>();

@@ -1,5 +1,6 @@
 ﻿using System;
 using Components.Characters.Enemy;
+using Components.HUD;
 using ScriptableObjects.Characters;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,23 +11,37 @@ namespace Components.Characters
     {
         public static UnityAction<Transform> ONCharacterDie;
         public UnityAction<Transform> ONGetDamage;
+
+        [SerializeField] private GameObject m_droppingMoney;
         
         private CharacterProperties m_properties;
+        private HUDController m_hudController;
 
         private void Awake()
         {
-            CharacterProperties.ONCharacterPropertiesInit += () =>
-            {
-                m_properties = GetComponent<CharacterProperties>();
-                ONCharacterDie += OnCharDie;
-                ONGetDamage += OnCharDamaged;
-            };
+            m_properties = GetComponent<CharacterProperties>();
+            CharacterProperties.ONCharacterPropertiesInit += () => m_properties = GetComponent<CharacterProperties>();
+            
+            ONCharacterDie += OnCharDie;
+            ONGetDamage += OnCharDamaged;
+            
+            m_hudController = HUDController.self;
+            HUDController.ONHUDControllerInit += () => m_hudController = HUDController.self;
+        }
+
+        private void Start()
+        {
+            if (m_properties.isPlayer)
+                m_hudController.SetHp((int) m_properties.health);
         }
 
         private void OnCharDamaged(Transform transform)
         {
             if (m_properties.isPlayer)
+            {
+                m_hudController.SetHp((int) m_properties.health);
                 return;
+            }
 
             EnemyActions enemyActions = GetComponent<EnemyActions>();
             if (enemyActions == null)
@@ -51,6 +66,12 @@ namespace Components.Characters
             {
                 ONCharacterDie?.Invoke(m_properties.Transform);
                 gameObject.SetActive(false);
+                
+                if (m_properties.isPlayer)
+                    return;
+                
+                var droppedMoney = Instantiate(m_droppingMoney);
+                droppedMoney.transform.position = m_properties.Transform.position;
                 return;
             }
 

@@ -15,6 +15,9 @@ namespace Components.Triggers
             if (@event == null)
                 return;
             
+            if (other.isTrigger && m_ignoreOtherTriggers)
+                return;
+            
             if (m_objectMask.IsInLayerMask(other.gameObject.layer))
                 @event?.Invoke(other);
         }

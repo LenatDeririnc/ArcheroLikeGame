@@ -5,6 +5,7 @@ namespace Components.Triggers
     public abstract class AbstractTrigger : MonoBehaviour
     {
         [SerializeField] protected bool m_hideRenderMash = true;
+        [SerializeField] protected bool m_ignoreOtherTriggers = true;
         [SerializeField] protected LayerMask m_objectMask = 0;
 
         protected abstract void OnTriggerEnter(Collider other);

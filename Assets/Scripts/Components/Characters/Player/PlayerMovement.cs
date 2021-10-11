@@ -1,3 +1,4 @@
+using System;
 using ScriptableObjects.Characters;
 using ScriptableObjects.Characters.States;
 using UnityEngine;
@@ -16,11 +17,14 @@ namespace Components.Characters.Player
 
         private void Awake()
         {
-            CharacterProperties.ONCharacterPropertiesInit += () =>
-            {
-                m_properties = GetComponent<CharacterProperties>();
-                m_behaviour = m_properties.CharacterBehaviour;
-            };
+            Init();
+            CharacterProperties.ONCharacterPropertiesInit += Init;
+        }
+
+        private void Init()
+        {
+            m_properties = GetComponent<CharacterProperties>();
+            m_behaviour = m_properties.CharacterBehaviour;
         }
 
         private void SetState(bool isStaying)
